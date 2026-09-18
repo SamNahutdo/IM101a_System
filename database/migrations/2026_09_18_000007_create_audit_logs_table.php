@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->enum('action', ['INSERT', 'UPDATE', 'DELETE']);
+            $table->string('action', 50);
             $table->string('table_name', 60);
             $table->unsignedBigInteger('record_id');
             $table->json('old_values')->nullable();
