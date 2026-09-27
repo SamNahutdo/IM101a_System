@@ -52,3 +52,9 @@ Artisan::command('db:automation', function () {
     $this->info('Successfully installed ' . count($commands) . ' database automation statements.');
     return 0;
 })->purpose('Install MySQL triggers, procedures, functions, and views');
+
+Artisan::command('test:defense', function () {
+    require_once base_path('tests/FalconSystemTestSuite.php');
+    $suite = new \Tests\FalconSystemTestSuite();
+    return $suite->run();
+})->purpose('Run the 6 automated defense verification tests');
