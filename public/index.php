@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+// Suppress deprecation notices from bleeding into HTTP output
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+ini_set('display_errors', '0');
+
 // Polyfill for mb_split if mbstring is not loaded
 if (!function_exists('mb_split')) {
     function mb_split(string $pattern, string $string, int $limit = -1): array|false {

@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FalconSystem - IM101 Project Documentation & Defense Manual</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+        @page {
+            size: A4 portrait;
+            margin: 18mm 16mm 18mm 16mm;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Cover Banner */
+        .doc-header {
+            border-bottom: 3px solid #1e3a8a;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .institution-badge {
+            display: inline-block;
+            background: #1e3a8a;
+            color: #ffffff;
+            font-size: 8.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .doc-title {
+            font-size: 22pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 6px 0;
+            line-height: 1.2;
+        }
+        .doc-subtitle {
+            font-size: 12.5pt;
+            font-weight: 600;
+            color: #d97706;
+            margin: 0 0 10px 0;
+        }
+        .doc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 8.5pt;
+            color: #64748b;
+        }
+        .doc-meta span {
+            display: inline-flex;
+            align-items: center;
+        }
+        .doc-meta strong {
+            color: #334155;
+            margin-right: 4px;
+        }
+
+        /* Headings */
+        h1, h2, h3, h4 {
+            color: #0f172a;
+            font-weight: 700;
+            margin-top: 1.8em;
+            margin-bottom: 0.6em;
+            page-break-after: avoid;
+        }
+        h1 {
+            font-size: 16pt;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 6px;
+        }
+        h2 {
+            font-size: 13pt;
+            color: #1e3a8a;
+            border-left: 4px solid #1e3a8a;
+            padding-left: 10px;
+            margin-top: 24px;
+        }
+        h3 {
+            font-size: 11pt;
+            color: #334155;
+        }
+
+        p, li {
+            color: #334155;
+        }
+        ul, ol {
+            padding-left: 22px;
+            margin-top: 6px;
+            margin-bottom: 12px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+            font-size: 8.5pt;
+            line-height: 1.45;
+            overflow-x: auto;
+            page-break-inside: avoid;
+            border: 1px solid #1e293b;
+            margin: 12px 0;
+        }
+        code {
+            font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+            font-size: 8.8pt;
+            background: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            border: none;
+            font-size: 8.5pt;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 9pt;
+            page-break-inside: avoid;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 7px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #1e293b;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+        tr:hover td {
+            background-color: #f1f5f9;
+        }
+
+        /* Horizontal Rules */
+        hr {
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+            margin: 22px 0;
+        }
+
+        /* Blockquotes / Callouts */
+        blockquote {
+            border-left: 4px solid #3b82f6;
+            background: #eff6ff;
+            margin: 12px 0;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            color: #1e40af;
+            font-size: 9.5pt;
+        }
+
+        /* Page breaks */
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            a {
+                color: #1e3a8a;
+                text-decoration: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-header">
+        <div class="institution-badge">Advanced Database Systems (IM101) &bull; Final Course Project</div>
+        <div class="doc-title">FALCONSYSTEM Defense Manual</div>
+        <div class="doc-subtitle">Athletic Equipment Services & Resource Management System</div>
+        <div class="doc-meta">
+            <span><strong>Course:</strong> IM101 Advanced Database Systems</span>
+            <span><strong>Architecture:</strong> 3NF Relational + MySQL Automation Engine</span>
+            <span><strong>Framework:</strong> Laravel 11 / PHP 8.2+ / MySQL 8</span>
+            <span><strong>Document Version:</strong> 1.0 (Production / Defense Ready)</span>
+        </div>
+    </div>
+
+    <h1>FALCONSYSTEM: Athletic Equipment Services &amp; Resource Management System</h1>
+<h2>Advanced Database Systems (IM101) — Comprehensive Project Documentation &amp; Defense Manual</h2>
+<hr>
+<h2>1. Project Overview</h2>
+<p><strong>FalconSystem</strong> is a specialized, 3NF-compliant relational web application developed for collegiate athletic equipment and resource management. Built for the <strong>3rd-Year Advanced Database Systems</strong> curriculum, it demonstrates robust relational database design, server-side MySQL automation (Triggers, Stored Procedures, Stored Functions, and Views), atomic ACID transactions, negative inventory prevention, and Role-Based Access Control (RBAC).</p>
+<p>The system is constructed with <strong>PHP 8.2+ / Laravel 11 MVC</strong>, a native <strong>MySQL 8.0 / MariaDB 10.4</strong> database engine, and a clean, responsive <strong>Blade + Bootstrap 5</strong> presentation layer designed specifically for academic presentation and defense.</p>
+<hr>
+<h2>2. Objectives</h2>
+<ol>
+<li>Design an entity-relational database architecture strictly adhering to <strong>Third Normal Form (3NF)</strong>.</li>
+<li>Implement <strong>two required Many-to-Many ($N:M$) relationships</strong> using junction tables containing meaningful intersection attributes.</li>
+<li>Enforce <strong>database-level referential integrity</strong> using strategic <code>RESTRICT</code>, <code>CASCADE</code>, and <code>SET NULL</code> foreign key constraints.</li>
+<li>Eliminate concurrency race conditions and <strong>prevent negative inventory</strong> using row-level locking (<code>SELECT ... FOR UPDATE</code>) and engine-level triggers.</li>
+<li>Implement server-side automation through <strong>MySQL Stored Procedures, Functions, and Triggers</strong>.</li>
+<li>Provide a secure, parameterized backend with <strong>4 distinct Role-Based Access Control (RBAC)</strong> portals: Admin, Staff, Coach, and Student.</li>
+<li>Ensure seamless cloud database deployment readiness (<code>.env</code> database abstraction).</li>
+</ol>
+<hr>
+<h2>3. System Scope</h2>
+<p>FalconSystem manages:</p>
+<ul>
+<li><strong>Athletes</strong>: Student profile records, student numbers, college departments, and year levels.</li>
+<li><strong>Coaches</strong>: Coaching staff records, employee IDs, and assigned sports divisions.</li>
+<li><strong>Sports</strong>: Collegiate sports divisions (e.g., Baseball, Softball, Table Tennis).</li>
+<li><strong>Teams</strong>: Varsity teams classified by sport and managed by coaches.</li>
+<li><strong>Team Members</strong>: Many-to-Many membership junction between Teams and Athletes.</li>
+<li><strong>Equipment</strong>: Athletic equipment inventory, categorization, and physical conditions.</li>
+<li><strong>Borrowing Transactions</strong>: Equipment checkout and loan records with due dates.</li>
+<li><strong>Borrowing Items</strong>: Many-to-Many loan junction between Transactions and Equipment items.</li>
+<li><strong>Maintenance &amp; Damage</strong>: Work orders, physical condition tracking, and repairs.</li>
+<li><strong>Audit Logs</strong>: Database trigger-generated audit trail of all data manipulations.</li>
+</ul>
+<hr>
+<h2>4. User Roles &amp; Clearance Matrix</h2>
+<p>The system defines exactly <strong>4 distinct roles</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Role</th>
+<th align="left">Primary User / Account</th>
+<th align="left">Clearance &amp; System Responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>ADMIN</strong></td>
+<td align="left"><code>admin</code> (Ma&#39;am Arbe — Athletics Director)</td>
+<td align="left">Full system oversight. Manages users, athletes, coaches, sports, teams, equipment master, and maintenance. Inspects trigger audit logs and operational reports.</td>
+</tr>
+<tr>
+<td align="left"><strong>STAFF</strong></td>
+<td align="left"><code>staff1</code> (Custodian John)</td>
+<td align="left">Equipment desk operations. Issues borrowing transactions via stored procedure, inspects returns, and tracks maintenance tickets.</td>
+</tr>
+<tr>
+<td align="left"><strong>COACH</strong></td>
+<td align="left"><code>coach_baseball</code>, <code>coach_softball</code>, <code>coach_tabletennis</code></td>
+<td align="left">Views assigned varsity teams, monitors athlete rosters, submits equipment requests, and reports damaged gear.</td>
+</tr>
+<tr>
+<td align="left"><strong>STUDENT / ATHLETE</strong></td>
+<td align="left"><code>athlete_juan</code>, <code>athlete_ana</code>, <code>athlete_mark</code></td>
+<td align="left">Browses live equipment catalog, submits borrowing loan requests, tracks own active borrowings/history, and reports gear defects.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. Entity-Relationship Diagram (ERD)</h2>
+<pre><code class="language-mermaid">erDiagram
+    roles ||--o{ users : &quot;assigned to&quot;
+    users ||--o| athletes : &quot;profile for student&quot;
+    users ||--o| coaches : &quot;profile for coach&quot;
+    coaches ||--o{ teams : &quot;manages&quot;
+    sports ||--o{ teams : &quot;categorizes&quot;
+    sports ||--o{ equipment : &quot;classifies&quot;
+    teams ||--o{ team_members : &quot;roster&quot;
+    athletes ||--o{ team_members : &quot;belongs to&quot;
+    athletes ||--o{ borrowing_transactions : &quot;borrower&quot;
+    users ||--o{ borrowing_transactions : &quot;approved by&quot;
+    borrowing_transactions ||--o{ borrowing_items : &quot;includes&quot;
+    equipment ||--o{ borrowing_items : &quot;lent as&quot;
+    equipment ||--o{ maintenance_records : &quot;serviced in&quot;
+    users ||--o{ maintenance_records : &quot;reported by&quot;
+    users ||--o{ audit_logs : &quot;actor&quot;
+</code></pre>
+<hr>
+<h2>6. Relational Schema (12 Tables in Strict 3NF)</h2>
+<pre><code class="language-text">1.  roles                   (id, name, description, created_at, updated_at)
+2.  users                   (id, role_id, username, email, password, status, remember_token, created_at, updated_at)
+3.  athletes                (id, user_id, student_number, first_name, last_name, department, year_level, contact_number, status, created_at, updated_at)
+4.  coaches                 (id, user_id, employee_number, first_name, last_name, contact_number, status, created_at, updated_at)
+5.  sports                  (id, sport_name, description, status, created_at, updated_at)
+6.  teams                   (id, sport_id, coach_id, team_name, school_year, status, created_at, updated_at)
+7.  team_members            (id, team_id, athlete_id, joined_at, position, status, created_at, updated_at) [N:M Junction 1]
+8.  equipment               (id, sport_id, equipment_code, equipment_name, category, quantity, available_quantity, condition, status, created_at, updated_at)
+9.  borrowing_transactions  (id, athlete_id, approved_by, borrow_date, expected_return_date, actual_return_date, status, remarks, created_at, updated_at)
+10. borrowing_items         (id, borrowing_transaction_id, equipment_id, quantity, condition_before, condition_after, returned_quantity, created_at, updated_at) [N:M Junction 2]
+11. maintenance_records     (id, equipment_id, reported_by, maintenance_type, description, scheduled_date, completed_date, status, remarks, created_at, updated_at)
+12. audit_logs              (id, user_id, action, table_name, record_id, old_values, new_values, created_at)
+</code></pre>
+<hr>
+<h2>7. Data Dictionary</h2>
+<h3>Table 1: <code>roles</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Unique role identifier</td>
+</tr>
+<tr>
+<td align="left"><code>name</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">UNIQUE, NOT NULL</td>
+<td align="left">Role code (<code>admin</code>, <code>staff</code>, <code>coach</code>, <code>student</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>description</code></td>
+<td align="left">VARCHAR(255)</td>
+<td align="left">NULLABLE</td>
+<td align="left">Role description</td>
+</tr>
+</tbody></table>
+<h3>Table 2: <code>users</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">User ID</td>
+</tr>
+<tr>
+<td align="left"><code>role_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>roles.id</code>, RESTRICT</td>
+<td align="left">Assigned role</td>
+</tr>
+<tr>
+<td align="left"><code>username</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">UNIQUE, NOT NULL</td>
+<td align="left">Login username</td>
+</tr>
+<tr>
+<td align="left"><code>email</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">UNIQUE, NOT NULL</td>
+<td align="left">User email address</td>
+</tr>
+<tr>
+<td align="left"><code>password</code></td>
+<td align="left">VARCHAR(255)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Bcrypt hashed password</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(20)</td>
+<td align="left">DEFAULT &#39;Active&#39;</td>
+<td align="left">Account state (<code>Active</code>, <code>Inactive</code>)</td>
+</tr>
+</tbody></table>
+<h3>Table 3: <code>athletes</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Athlete ID</td>
+</tr>
+<tr>
+<td align="left"><code>user_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>users.id</code>, CASCADE</td>
+<td align="left">Parent user login</td>
+</tr>
+<tr>
+<td align="left"><code>student_number</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">UNIQUE, NOT NULL</td>
+<td align="left">University student ID</td>
+</tr>
+<tr>
+<td align="left"><code>first_name</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Given name</td>
+</tr>
+<tr>
+<td align="left"><code>last_name</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Surname</td>
+</tr>
+<tr>
+<td align="left"><code>department</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">NOT NULL</td>
+<td align="left">College/Department</td>
+</tr>
+<tr>
+<td align="left"><code>year_level</code></td>
+<td align="left">TINYINT UNSIGNED</td>
+<td align="left">DEFAULT 1</td>
+<td align="left">College academic year</td>
+</tr>
+<tr>
+<td align="left"><code>contact_number</code></td>
+<td align="left">VARCHAR(30)</td>
+<td align="left">NULLABLE</td>
+<td align="left">Phone contact</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(20)</td>
+<td align="left">DEFAULT &#39;Active&#39;</td>
+<td align="left">Student eligibility status</td>
+</tr>
+</tbody></table>
+<h3>Table 4: <code>coaches</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Coach ID</td>
+</tr>
+<tr>
+<td align="left"><code>user_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>users.id</code>, CASCADE</td>
+<td align="left">Parent user login</td>
+</tr>
+<tr>
+<td align="left"><code>employee_number</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">UNIQUE, NOT NULL</td>
+<td align="left">University employee ID</td>
+</tr>
+<tr>
+<td align="left"><code>first_name</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Given name</td>
+</tr>
+<tr>
+<td align="left"><code>last_name</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Surname</td>
+</tr>
+<tr>
+<td align="left"><code>contact_number</code></td>
+<td align="left">VARCHAR(30)</td>
+<td align="left">NULLABLE</td>
+<td align="left">Phone contact</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(20)</td>
+<td align="left">DEFAULT &#39;Active&#39;</td>
+<td align="left">Staff employment status</td>
+</tr>
+</tbody></table>
+<h3>Table 5: <code>sports</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Sport ID</td>
+</tr>
+<tr>
+<td align="left"><code>sport_name</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">UNIQUE, NOT NULL</td>
+<td align="left">Division name (e.g. Baseball)</td>
+</tr>
+<tr>
+<td align="left"><code>description</code></td>
+<td align="left">TEXT</td>
+<td align="left">NULLABLE</td>
+<td align="left">Sport details</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(20)</td>
+<td align="left">DEFAULT &#39;Active&#39;</td>
+<td align="left">Division status</td>
+</tr>
+</tbody></table>
+<h3>Table 6: <code>teams</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Team ID</td>
+</tr>
+<tr>
+<td align="left"><code>sport_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>sports.id</code>, RESTRICT</td>
+<td align="left">Classified sport</td>
+</tr>
+<tr>
+<td align="left"><code>coach_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>coaches.id</code>, SET NULL</td>
+<td align="left">Assigned head coach</td>
+</tr>
+<tr>
+<td align="left"><code>team_name</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Team name</td>
+</tr>
+<tr>
+<td align="left"><code>school_year</code></td>
+<td align="left">VARCHAR(20)</td>
+<td align="left">DEFAULT &#39;2026-2027&#39;</td>
+<td align="left">Competition academic year</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(20)</td>
+<td align="left">DEFAULT &#39;Active&#39;</td>
+<td align="left">Team status</td>
+</tr>
+</tbody></table>
+<h3>Table 7: <code>team_members</code> (N:M Junction 1)</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Junction ID</td>
+</tr>
+<tr>
+<td align="left"><code>team_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>teams.id</code>, CASCADE</td>
+<td align="left">Team reference</td>
+</tr>
+<tr>
+<td align="left"><code>athlete_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>athletes.id</code>, CASCADE</td>
+<td align="left">Athlete reference</td>
+</tr>
+<tr>
+<td align="left"><code>joined_at</code></td>
+<td align="left">DATE</td>
+<td align="left">NOT NULL</td>
+<td align="left">Date enrolled in team</td>
+</tr>
+<tr>
+<td align="left"><code>position</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">NULLABLE</td>
+<td align="left">Player position (e.g. Pitcher)</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(20)</td>
+<td align="left">DEFAULT &#39;Active&#39;</td>
+<td align="left">Roster membership status</td>
+</tr>
+</tbody></table>
+<h3>Table 8: <code>equipment</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Equipment ID</td>
+</tr>
+<tr>
+<td align="left"><code>sport_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>sports.id</code>, RESTRICT</td>
+<td align="left">Sport reference</td>
+</tr>
+<tr>
+<td align="left"><code>equipment_code</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">UNIQUE, NOT NULL</td>
+<td align="left">Asset tracking code</td>
+</tr>
+<tr>
+<td align="left"><code>equipment_name</code></td>
+<td align="left">VARCHAR(150)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Equipment title/model</td>
+</tr>
+<tr>
+<td align="left"><code>category</code></td>
+<td align="left">VARCHAR(100)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Type (Bats, Gloves, Balls)</td>
+</tr>
+<tr>
+<td align="left"><code>quantity</code></td>
+<td align="left">INT UNSIGNED</td>
+<td align="left">DEFAULT 0</td>
+<td align="left">Total inventory owned</td>
+</tr>
+<tr>
+<td align="left"><code>available_quantity</code></td>
+<td align="left">INT</td>
+<td align="left">DEFAULT 0</td>
+<td align="left">Inventory on hand</td>
+</tr>
+<tr>
+<td align="left"><code>condition</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">DEFAULT &#39;Good&#39;</td>
+<td align="left">Physical condition</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(30)</td>
+<td align="left">DEFAULT &#39;Available&#39;</td>
+<td align="left">Operational status</td>
+</tr>
+</tbody></table>
+<h3>Table 9: <code>borrowing_transactions</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Transaction ID</td>
+</tr>
+<tr>
+<td align="left"><code>athlete_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>athletes.id</code>, RESTRICT</td>
+<td align="left">Borrowing student</td>
+</tr>
+<tr>
+<td align="left"><code>approved_by</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>users.id</code>, SET NULL</td>
+<td align="left">Staff/Admin approver</td>
+</tr>
+<tr>
+<td align="left"><code>borrow_date</code></td>
+<td align="left">DATE</td>
+<td align="left">NOT NULL</td>
+<td align="left">Checkout date</td>
+</tr>
+<tr>
+<td align="left"><code>expected_return_date</code></td>
+<td align="left">DATE</td>
+<td align="left">NOT NULL</td>
+<td align="left">Loan deadline</td>
+</tr>
+<tr>
+<td align="left"><code>actual_return_date</code></td>
+<td align="left">DATE</td>
+<td align="left">NULLABLE</td>
+<td align="left">Completion date</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(30)</td>
+<td align="left">DEFAULT &#39;Pending&#39;</td>
+<td align="left">Loan state (<code>Borrowed</code>, <code>Returned</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>remarks</code></td>
+<td align="left">TEXT</td>
+<td align="left">NULLABLE</td>
+<td align="left">Purpose/Notes</td>
+</tr>
+</tbody></table>
+<h3>Table 10: <code>borrowing_items</code> (N:M Junction 2)</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Item junction ID</td>
+</tr>
+<tr>
+<td align="left"><code>borrowing_transaction_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>borrowing_transactions.id</code>, CASCADE</td>
+<td align="left">Transaction reference</td>
+</tr>
+<tr>
+<td align="left"><code>equipment_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>equipment.id</code>, RESTRICT</td>
+<td align="left">Equipment reference</td>
+</tr>
+<tr>
+<td align="left"><code>quantity</code></td>
+<td align="left">INT UNSIGNED</td>
+<td align="left">DEFAULT 1</td>
+<td align="left">Borrowed units</td>
+</tr>
+<tr>
+<td align="left"><code>condition_before</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">DEFAULT &#39;Good&#39;</td>
+<td align="left">Condition at checkout</td>
+</tr>
+<tr>
+<td align="left"><code>condition_after</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">NULLABLE</td>
+<td align="left">Condition on return</td>
+</tr>
+<tr>
+<td align="left"><code>returned_quantity</code></td>
+<td align="left">INT UNSIGNED</td>
+<td align="left">DEFAULT 0</td>
+<td align="left">Units verified returned</td>
+</tr>
+</tbody></table>
+<h3>Table 11: <code>maintenance_records</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Maintenance record ID</td>
+</tr>
+<tr>
+<td align="left"><code>equipment_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>equipment.id</code>, RESTRICT</td>
+<td align="left">Serviced equipment</td>
+</tr>
+<tr>
+<td align="left"><code>reported_by</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>users.id</code>, SET NULL</td>
+<td align="left">Reporter user</td>
+</tr>
+<tr>
+<td align="left"><code>maintenance_type</code></td>
+<td align="left">VARCHAR(80)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Type (Repair, Restring)</td>
+</tr>
+<tr>
+<td align="left"><code>description</code></td>
+<td align="left">TEXT</td>
+<td align="left">NOT NULL</td>
+<td align="left">Work order description</td>
+</tr>
+<tr>
+<td align="left"><code>scheduled_date</code></td>
+<td align="left">DATE</td>
+<td align="left">NOT NULL</td>
+<td align="left">Scheduled start date</td>
+</tr>
+<tr>
+<td align="left"><code>completed_date</code></td>
+<td align="left">DATE</td>
+<td align="left">NULLABLE</td>
+<td align="left">Completion date</td>
+</tr>
+<tr>
+<td align="left"><code>status</code></td>
+<td align="left">VARCHAR(30)</td>
+<td align="left">DEFAULT &#39;Scheduled&#39;</td>
+<td align="left">Order status</td>
+</tr>
+<tr>
+<td align="left"><code>remarks</code></td>
+<td align="left">TEXT</td>
+<td align="left">NULLABLE</td>
+<td align="left">Technician notes</td>
+</tr>
+</tbody></table>
+<h3>Table 12: <code>audit_logs</code></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Type</th>
+<th align="left">Constraints</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">PK, AUTO_INCREMENT</td>
+<td align="left">Audit entry ID</td>
+</tr>
+<tr>
+<td align="left"><code>user_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">FK -&gt; <code>users.id</code>, SET NULL</td>
+<td align="left">Actor user ID</td>
+</tr>
+<tr>
+<td align="left"><code>action</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Action (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>table_name</code></td>
+<td align="left">VARCHAR(50)</td>
+<td align="left">NOT NULL</td>
+<td align="left">Affected database table</td>
+</tr>
+<tr>
+<td align="left"><code>record_id</code></td>
+<td align="left">BIGINT UNSIGNED</td>
+<td align="left">NULLABLE</td>
+<td align="left">Affected primary key</td>
+</tr>
+<tr>
+<td align="left"><code>old_values</code></td>
+<td align="left">JSON</td>
+<td align="left">NULLABLE</td>
+<td align="left">Previous record state</td>
+</tr>
+<tr>
+<td align="left"><code>new_values</code></td>
+<td align="left">JSON</td>
+<td align="left">NULLABLE</td>
+<td align="left">New record state</td>
+</tr>
+<tr>
+<td align="left"><code>created_at</code></td>
+<td align="left">TIMESTAMP</td>
+<td align="left">DEFAULT CURRENT_TIMESTAMP</td>
+<td align="left">Engine timestamp</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>8. Third Normal Form (3NF) Justification</h2>
+<h3>First Normal Form (1NF)</h3>
+<ul>
+<li><strong>Atomicity</strong>: Every column contains single, indivisible scalar values (e.g. <code>first_name</code> and <code>last_name</code> are separated, dates are atomic <code>DATE</code> types).</li>
+<li><strong>No Repeating Groups</strong>: Rather than storing multiple equipment items or athletes in comma-separated strings inside a single row, separate junction tables (<code>team_members</code>, <code>borrowing_items</code>) are employed.</li>
+</ul>
+<h3>Second Normal Form (2NF)</h3>
+<ul>
+<li>The database is in 1NF.</li>
+<li><strong>Full Functional Dependency</strong>: Every non-key attribute depends on the entirety of the primary key. In the junction tables (<code>team_members</code>, <code>borrowing_items</code>), intersection attributes (such as <code>position</code> and <code>joined_at</code> in <code>team_members</code>, or <code>condition_before</code> and <code>returned_quantity</code> in <code>borrowing_items</code>) depend on both joined foreign keys, eliminating partial key dependencies.</li>
+</ul>
+<h3>Third Normal Form (3NF)</h3>
+<ul>
+<li>The database is in 2NF.</li>
+<li><strong>No Transitive Dependencies</strong>: Non-key attributes depend <em>only</em> on candidate keys and never on other non-key attributes.<ul>
+<li>For example, athlete profile information (<code>student_number</code>, <code>department</code>, <code>year_level</code>) is not duplicated across borrowing transactions; borrowing transactions reference only <code>athlete_id</code>.</li>
+<li>Sport descriptions are not copied into the <code>equipment</code> or <code>teams</code> tables; they reference <code>sport_id</code>.</li>
+<li>Physical equipment conditions and available quantities reside purely in <code>equipment</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>9. Relationships &amp; Referential Integrity</h2>
+<ul>
+<li><code>users.role_id</code> $\rightarrow$ <code>roles.id</code>: <code>ON DELETE RESTRICT</code> (Protects master system roles from deletion).</li>
+<li><code>athletes.user_id</code> $\rightarrow$ <code>users.id</code>: <code>ON DELETE CASCADE</code> (Removing user removes linked athlete profile).</li>
+<li><code>coaches.user_id</code> $\rightarrow$ <code>users.id</code>: <code>ON DELETE CASCADE</code> (Removing user removes linked coach profile).</li>
+<li><code>teams.sport_id</code> $\rightarrow$ <code>sports.id</code>: <code>ON DELETE RESTRICT</code> (Sports with teams cannot be inadvertently dropped).</li>
+<li><code>teams.coach_id</code> $\rightarrow$ <code>coaches.id</code>: <code>ON DELETE SET NULL</code> (Coach changes do not destroy varsity teams).</li>
+<li><code>team_members.team_id</code> $\rightarrow$ <code>teams.id</code>: <code>ON DELETE CASCADE</code> (Disbanding team clears roster).</li>
+<li><code>team_members.athlete_id</code> $\rightarrow$ <code>athletes.id</code>: <code>ON DELETE CASCADE</code> (Removing student drops memberships).</li>
+<li><code>equipment.sport_id</code> $\rightarrow$ <code>sports.id</code>: <code>ON DELETE RESTRICT</code> (Sports division cannot be deleted while equipment exists).</li>
+<li><code>borrowing_transactions.athlete_id</code> $\rightarrow$ <code>athletes.id</code>: <code>ON DELETE RESTRICT</code> (Historical borrower records are preserved).</li>
+<li><code>borrowing_items.borrowing_transaction_id</code> $\rightarrow$ <code>borrowing_transactions.id</code>: <code>ON DELETE CASCADE</code>.</li>
+<li><code>borrowing_items.equipment_id</code> $\rightarrow$ <code>equipment.id</code>: <code>ON DELETE RESTRICT</code> (Equipment with transaction history cannot be deleted).</li>
+<li><code>maintenance_records.equipment_id</code> $\rightarrow$ <code>equipment.id</code>: <code>ON DELETE RESTRICT</code>.</li>
+</ul>
+<hr>
+<h2>10. Database Triggers (5 Automated Triggers)</h2>
+<p>All triggers reside in <code>database/sql/database_automation.sql</code>:</p>
+<ol>
+<li><strong><code>trg_audit_equipment_insert</code></strong> (<code>AFTER INSERT ON equipment</code>):
+Automatically captures new equipment creations and writes JSON snapshots of new attributes to <code>audit_logs</code>.</li>
+<li><strong><code>trg_audit_equipment_update</code></strong> (<code>AFTER UPDATE ON equipment</code>):
+Captures delta updates (changes to <code>available_quantity</code>, <code>condition</code>, <code>status</code>) and writes before/after JSON states to <code>audit_logs</code>.</li>
+<li><strong><code>trg_audit_equipment_delete</code></strong> (<code>AFTER DELETE ON equipment</code>):
+Logs deleted equipment codes, quantities, and names into <code>audit_logs</code>.</li>
+<li><strong><code>trg_borrowing_items_insert_inventory</code></strong> (<code>BEFORE INSERT ON borrowing_items</code>):
+<em>Checks live availability</em>:<pre><code class="language-sql">IF v_current_avail &lt; NEW.quantity THEN
+    SIGNAL SQLSTATE &#39;45000&#39;
+    SET MESSAGE_TEXT = &#39;Negative inventory violation: Requested quantity exceeds available inventory.&#39;;
+ELSE
+    UPDATE equipment SET available_quantity = available_quantity - NEW.quantity WHERE id = NEW.equipment_id;
+END IF;
+</code></pre>
+</li>
+<li><strong><code>trg_borrowing_items_return_inventory</code></strong> (<code>AFTER UPDATE ON borrowing_items</code>):
+When <code>NEW.returned_quantity &gt; OLD.returned_quantity</code>, automatically increments <code>equipment.available_quantity</code> by the returned delta.</li>
+</ol>
+<hr>
+<h2>11. Stored Procedures (3 Core Procedures)</h2>
+<h3>1. <code>sp_process_borrowing</code></h3>
+<ul>
+<li><strong>Signature</strong>: <code>(IN p_athlete_id, IN p_equipment_id, IN p_quantity, IN p_expected_return_date, IN p_approved_by, IN p_remarks, OUT p_success, OUT p_message, OUT p_transaction_id)</code></li>
+<li><strong>Atomic Workflow</strong>:<ol>
+<li>Validates athlete is Active.</li>
+<li>Executes <code>START TRANSACTION</code>.</li>
+<li>Executes <code>SELECT available_quantity INTO v_avail FROM equipment WHERE id = p_equipment_id FOR UPDATE</code> (Row Lock).</li>
+<li>If <code>v_avail &lt; p_quantity</code>, triggers <code>ROLLBACK</code> and sets <code>p_success = FALSE</code>.</li>
+<li>Inserts <code>borrowing_transactions</code> and <code>borrowing_items</code>.</li>
+<li>Trigger decrements inventory safely.</li>
+<li>Inserts transaction log into <code>audit_logs</code>.</li>
+<li>Executes <code>COMMIT</code> and sets <code>p_success = TRUE</code>.</li>
+</ol>
+</li>
+</ul>
+<h3>2. <code>sp_process_return</code></h3>
+<ul>
+<li><strong>Signature</strong>: <code>(IN p_borrowing_item_id, IN p_returned_qty, IN p_condition_after, IN p_processed_by, OUT p_success, OUT p_message)</code></li>
+<li><strong>Atomic Workflow</strong>:<ol>
+<li>Validates item existence and return quantity bounds.</li>
+<li>Executes <code>START TRANSACTION</code>.</li>
+<li>Locks borrowing item (<code>FOR UPDATE</code>).</li>
+<li>Increments <code>returned_quantity</code> and sets <code>condition_after</code>.</li>
+<li>Trigger increments <code>equipment.available_quantity</code>.</li>
+<li>If all items in transaction are returned, flags <code>borrowing_transactions.status = &#39;Returned&#39;</code>.</li>
+<li>Commits transaction and writes audit log.</li>
+</ol>
+</li>
+</ul>
+<h3>3. <code>sp_get_overdue_equipment</code></h3>
+<ul>
+<li><strong>Signature</strong>: <code>()</code></li>
+<li>Produces an analytical result set joining overdue borrowers, student numbers, phone contacts, equipment details, expected return dates, and overdue days calculated via <code>fn_overdue_days</code>.</li>
+</ul>
+<hr>
+<h2>12. Stored Functions (2 Functions)</h2>
+<h3>1. <code>fn_overdue_days(p_expected_date DATE, p_actual_date DATE) RETURNS INT</code></h3>
+<p>Calculates deterministic elapsed days past the deadline:</p>
+<ul>
+<li>If <code>p_actual_date</code> is provided and exceeds <code>p_expected_date</code>, calculates <code>DATEDIFF(p_actual_date, p_expected_date)</code>.</li>
+<li>If unreturned and <code>CURRENT_DATE() &gt; p_expected_date</code>, calculates <code>DATEDIFF(CURRENT_DATE(), p_expected_date)</code>.</li>
+<li>Otherwise returns 0.</li>
+</ul>
+<h3>2. <code>fn_equipment_availability(p_equipment_id BIGINT) RETURNS VARCHAR(50)</code></h3>
+<p>Evaluates real-time availability string:</p>
+<ul>
+<li>Returns <code>&#39;Out of Stock&#39;</code> if <code>available_quantity &lt;= 0</code>.</li>
+<li>Returns <code>&#39;Low Stock&#39;</code> if <code>available_quantity &lt;= 2</code>.</li>
+<li>Returns <code>&#39;Available&#39;</code> if stock is healthy.</li>
+<li>Returns current condition if flagged for maintenance.</li>
+</ul>
+<hr>
+<h2>13. Database Views (3 Core Views)</h2>
+<ol>
+<li><strong><code>vw_equipment_inventory</code></strong>:
+Comprehensive equipment catalog joined with <code>sports</code>, showing total quantity, available quantity, in-use quantity, condition, and stock status function output.</li>
+<li><strong><code>vw_current_borrowings</code></strong>:
+Real-time view of all loans in <code>Borrowed</code>, <code>Pending</code>, or <code>Approved</code> states joined with student athlete contact information and return due dates.</li>
+<li><strong><code>vw_overdue_borrowings</code></strong>:
+Filter of active unreturned equipment exceeding deadline, calculating dynamic overdue days.</li>
+</ol>
+<hr>
+<h2>14. Indexes &amp; Performance Optimization</h2>
+<p>Strategic B-Tree indexes added to frequently filtered and joined columns:</p>
+<ul>
+<li><code>users.email</code> (Unique lookups)</li>
+<li><code>athletes.student_number</code> (Unique search &amp; joins)</li>
+<li><code>coaches.employee_number</code> (Unique search &amp; joins)</li>
+<li><code>equipment.equipment_code</code> (Asset scans)</li>
+<li><code>equipment.sport_id</code> (Foreign key joins)</li>
+<li><code>equipment.status</code> (Availability filtering)</li>
+<li><code>equipment.category</code> (Category searches)</li>
+<li><code>equipment.(sport_id, status)</code> (Composite index for inventory lookups)</li>
+<li><code>borrowing_transactions.athlete_id</code> (Borrower history joins)</li>
+<li><code>borrowing_transactions.status</code> (Loan filtering)</li>
+<li><code>borrowing_transactions.expected_return_date</code> (Overdue scanning)</li>
+<li><code>borrowing_transactions.(status, expected_return_date)</code> (Composite index for overdue reports)</li>
+<li><code>borrowing_items.borrowing_transaction_id</code> &amp; <code>borrowing_items.equipment_id</code> (Junction table joins)</li>
+<li><code>maintenance_records.equipment_id</code> &amp; <code>maintenance_records.status</code></li>
+<li><code>audit_logs.created_at</code> &amp; <code>audit_logs.table_name</code> (Audit log timeline filtering)</li>
+</ul>
+<hr>
+<h2>15. Transaction Management &amp; Negative Inventory Prevention</h2>
+<ul>
+<li><strong>Row-Level Locking</strong>: <code>SELECT ... FOR UPDATE</code> acquires an exclusive lock on the specific equipment record until the transaction completes.</li>
+<li><strong>Deterministic Isolation</strong>: Concurrent requests attempting to borrow the same last item are serialized. The first transaction commits and decrements stock to 0; the second transaction reads the locked row, observes <code>available_quantity == 0</code>, rolls back, and returns:
+<code>&quot;Insufficient inventory: Only 0 available, but 1 requested.&quot;</code></li>
+<li><strong>Engine-Level Trigger Guard</strong>: <code>trg_borrowing_items_insert_inventory</code> throws a <code>SQLSTATE &#39;45000&#39;</code> signal if an attempt is made to bypass application logic and insert a quantity exceeding available stock.</li>
+</ul>
+<hr>
+<h2>16. Role-Based Access Control (RBAC) Implementation</h2>
+<ul>
+<li>Enforced at the HTTP kernel routing level via <code>App\Http\Middleware\RoleMiddleware</code>.</li>
+<li>Route groups enforce role clearance:<ul>
+<li><code>/admin/*</code>: Accessible exclusively by <code>admin</code>.</li>
+<li><code>/staff/*</code>: Accessible by <code>staff</code>.</li>
+<li><code>/coach/*</code>: Accessible by <code>coach</code>.</li>
+<li><code>/student/*</code>: Accessible by <code>student</code>.</li>
+</ul>
+</li>
+<li>Unauthorized attempts return an <strong>HTTP 403 Forbidden</strong> response.</li>
+</ul>
+<hr>
+<h2>17. Security &amp; Parameterized Database Access</h2>
+<ul>
+<li><strong>No Root Credentials in Production</strong>: Application database access is restricted to the dedicated least-privileged user <code>falcon_app</code>.</li>
+<li><strong>100% Prepared Statements</strong>: Eloquent ORM and <code>DB::statement(&quot;CALL ... (?, ?)&quot;)</code> utilize parameterized PDO binding, completely eliminating SQL Injection vulnerabilities.</li>
+<li><strong>Bcrypt Password Hashing</strong>: Passwords are never stored in plaintext (<code>Hash::make(...)</code>).</li>
+<li><strong>CSRF Protection</strong>: All web forms include <code>@csrf</code> token validation.</li>
+</ul>
+<hr>
+<h2>18. Automated Defense Testing Suite</h2>
+<p>Execute the automated test suite directly via:</p>
+<pre><code class="language-bash">php artisan test:defense
+</code></pre>
+<p>Results: <strong>16 PASSED, 0 FAILED</strong></p>
+<ul>
+<li><strong>Test 1</strong>: Create equipment master record, check initial available quantity, and verify MySQL Trigger <code>trg_audit_equipment_insert</code>.</li>
+<li><strong>Test 2</strong>: Process equipment checkout via <code>sp_process_borrowing</code>, verifying atomic transaction and available quantity decrement.</li>
+<li><strong>Test 3</strong>: Attempt over-borrowing beyond available stock; verify automatic rollback and descriptive error response.</li>
+<li><strong>Test 4</strong>: Process return via <code>sp_process_return</code>, verifying inventory restoration.</li>
+<li><strong>Test 5</strong>: Concurrency &amp; zero-inventory protection test (second concurrent borrower rejected; stock remains valid at 0).</li>
+<li><strong>Test 6</strong>: RBAC verification (student attempting admin route receives HTTP 403 Forbidden).</li>
+</ul>
+<hr>
+<h2>19. Query Optimization &amp; EXPLAIN Documentation</h2>
+<h3>Query 1: Current Borrowings by Status and Expected Return Date</h3>
+<pre><code class="language-sql">EXPLAIN SELECT 
+    bt.id, a.student_number, CONCAT(a.first_name, &#39; &#39;, a.last_name) AS borrower_name,
+    e.equipment_code, e.equipment_name, bi.quantity, bt.borrow_date, bt.expected_return_date
+FROM borrowing_transactions bt
+JOIN athletes a ON bt.athlete_id = a.id
+JOIN borrowing_items bi ON bt.id = bi.borrowing_transaction_id
+JOIN equipment e ON bi.equipment_id = e.id
+WHERE bt.status = &#39;Borrowed&#39;
+  AND bt.expected_return_date &gt;= CURRENT_DATE();
+</code></pre>
+<ul>
+<li><strong>Query Plan Analysis</strong>:<ul>
+<li><code>bt</code>: Uses <code>PRIMARY</code> and index <code>borrowing_transactions_status_expected_return_date_index</code>.</li>
+<li><code>e</code>: <code>eq_ref</code> lookup via <code>PRIMARY</code> key (<code>id</code>).</li>
+<li><code>a</code>: <code>eq_ref</code> lookup via <code>PRIMARY</code> key (<code>id</code>).</li>
+</ul>
+</li>
+</ul>
+<h3>Query 2: Overdue Equipment Loans</h3>
+<pre><code class="language-sql">EXPLAIN SELECT 
+    bt.id, a.student_number, e.equipment_name, bi.quantity,
+    bt.borrow_date, bt.expected_return_date,
+    DATEDIFF(CURRENT_DATE(), bt.expected_return_date) AS days_overdue
+FROM borrowing_transactions bt
+JOIN athletes a ON bt.athlete_id = a.id
+JOIN borrowing_items bi ON bt.id = bi.borrowing_transaction_id
+JOIN equipment e ON bi.equipment_id = e.id
+WHERE bt.status = &#39;Borrowed&#39;
+  AND bt.expected_return_date &lt; CURRENT_DATE()
+  AND (bi.quantity - bi.returned_quantity) &gt; 0;
+</code></pre>
+<ul>
+<li><strong>Optimization Document</strong>:<ul>
+<li>Utilizes composite B-Tree index <code>borrowing_transactions_status_expected_return_date_index</code> (<code>ref</code> type, <code>Using index condition</code>).</li>
+<li><code>bi</code>: Uses foreign key index <code>borrowing_items_borrowing_transaction_id_index</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>20. Cloud Database Deployment Guide</h2>
+<p>For course evaluation requiring a cloud-hosted relational database (rejecting localhost in production):</p>
+<ol>
+<li><strong>Provision a Free Cloud MySQL Instance</strong>:<ul>
+<li>Providers: <strong>Aiven for MySQL</strong>, <strong>Clever Cloud</strong>, or <strong>AWS RDS Free Tier</strong>.</li>
+</ul>
+</li>
+<li><strong>Retrieve Connection Parameters</strong>:<ul>
+<li>Host (e.g. <code>mysql-falcon-production.aivencloud.com</code>)</li>
+<li>Port (e.g. <code>15234</code> or <code>3306</code>)</li>
+<li>Database Name (<code>falcon_system</code>)</li>
+<li>Username (<code>falcon_app</code> or cloud user)</li>
+<li>Password</li>
+</ul>
+</li>
+<li><strong>Configure <code>.env</code></strong>:<pre><code class="language-ini">DB_CONNECTION=mysql
+DB_HOST=mysql-falcon-production.aivencloud.com
+DB_PORT=15234
+DB_DATABASE=falcon_system
+DB_USERNAME=falcon_app
+DB_PASSWORD=YourSecureCloudPassword123!
+</code></pre>
+</li>
+<li><strong>Deploy Schema, Seeders &amp; Automation</strong>:<pre><code class="language-bash">php artisan migrate --force
+php artisan db:seed --force
+php artisan db:automation
+</code></pre>
+</li>
+<li><strong>Verify Cloud Health</strong>:<pre><code class="language-bash">php artisan test:defense
+</code></pre>
+</li>
+</ol>
+
+
+</body>
+</html>
