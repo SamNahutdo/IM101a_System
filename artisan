@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Input\ArgvInput;
+
+define('LARAVEL_START', microtime(true));
+
+// Polyfill for mb_split if mbstring is not loaded
+if (!function_exists('mb_split')) {
+    function mb_split(string $pattern, string $string, int $limit = -1): array|false {
+        return preg_split('/' . $pattern . '/u', $string, $limit);
+    }
+}
+
+// Register the Composer autoloader...
+require __DIR__.'/vendor/autoload.php';
+
+// Bootstrap Laravel and handle the command...
+/** @var \Illuminate\Foundation\Application $app */
+$app = require_once __DIR__.'/bootstrap/app.php';
+
+$status = $app->handleCommand(new ArgvInput);
+
+exit($status);
