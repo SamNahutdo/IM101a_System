@@ -91,4 +91,17 @@ class User extends Authenticatable
         }
         return $this->username;
     }
+
+    public function getInitialsAttribute(): string
+    {
+        $name = $this->displayName;
+        $words = explode(' ', trim($name));
+        $initials = '';
+        foreach ($words as $w) {
+            if (!empty($w)) {
+                $initials .= strtoupper($w[0]);
+            }
+        }
+        return substr($initials, 0, 2) ?: 'U';
+    }
 }

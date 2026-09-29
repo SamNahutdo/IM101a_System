@@ -29,6 +29,12 @@ class DashboardController extends Controller
 
         $overdueCount = DB::table('vw_overdue_borrowings')->count();
 
+        $upcomingReturns = BorrowingTransaction::with(['athlete', 'items.equipment'])
+            ->whereIn('status', ['Borrowed', 'Pending'])
+            ->orderBy('expected_return_date', 'asc')
+            ->take(4)
+            ->get();
+
         return view('dashboards.admin', compact(
             'totalEquipment',
             'availableEquipment',
@@ -36,7 +42,8 @@ class DashboardController extends Controller
             'maintenanceCount',
             'pendingCount',
             'overdueCount',
-            'recentTransactions'
+            'recentTransactions',
+            'upcomingReturns'
         ));
     }
 

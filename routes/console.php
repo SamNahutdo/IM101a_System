@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
-Artisan::command('inspire', function () {
-    $this->comment('FalconSystem: Athletic Equipment Services & Resource Management System');
-})->purpose('Display project motto');
+
+
 
 Artisan::command('db:automation', function () {
     $this->info('Installing database triggers, stored procedures, functions, and views...');
